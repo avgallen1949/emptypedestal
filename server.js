@@ -74,6 +74,14 @@ const upload = multer({
   }
 });
 
+// Serve static files from a 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route for the root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // ----- API ROUTES -----
 
 // GET all images

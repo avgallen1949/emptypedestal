@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Sharing Platform</title>
+    <title>Random Image Layout</title>
     <style>
         * {
             margin: 0;
@@ -15,12 +15,13 @@
         body {
             background-color: #f5f5f5;
             color: #333;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
             padding: 20px;
         }
         
@@ -29,7 +30,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
-            border-bottom: 1px solid #ddd;
             margin-bottom: 30px;
         }
         
@@ -37,18 +37,55 @@
             color: #2c3e50;
         }
         
-        .btn {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
+        .random-gallery {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 120px);
         }
         
-        .btn:hover {
+        .gallery-item {
+            position: absolute;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+            width: 200px;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 100;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .add-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border: none;
+        }
+        
+        .add-button:hover {
             background-color: #2980b9;
         }
         
@@ -82,11 +119,7 @@
             max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .modal h2 {
-            margin-bottom: 20px;
-            color: #2c3e50;
+            position: relative;
         }
         
         .form-group {
@@ -99,8 +132,17 @@
             font-weight: 600;
         }
         
-        .form-group input,
         .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-group input[type="file"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -108,15 +150,25 @@
             font-size: 16px;
         }
         
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        
         .modal-buttons {
             display: flex;
             justify-content: flex-end;
             gap: 10px;
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
         }
         
         .btn-cancel {
@@ -127,86 +179,31 @@
             background-color: #7f8c8d;
         }
         
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .gallery-item {
+        .popup {
+            position: absolute;
             background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .gallery-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .gallery-info {
             padding: 15px;
-        }
-        
-        .gallery-title {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .image-viewer {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
             border-radius: 8px;
-            max-width: 800px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1001;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            z-index: 200;
             display: none;
         }
         
-        .image-viewer img {
-            max-width: 100%;
-            max-height: 500px;
-            object-fit: contain;
-            margin-bottom: 20px;
-        }
-        
-        .image-viewer h3 {
+        .popup-text {
             margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        
-        .image-viewer p {
-            margin-bottom: 20px;
-            color: #34495e;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
         }
         
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 5px;
+            right: 5px;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 16px;
             cursor: pointer;
             color: #95a5a6;
         }
@@ -227,45 +224,28 @@
             font-size: 20px;
             color: #95a5a6;
         }
-        
-        .error-message {
-            color: #e74c3c;
-            margin-top: 5px;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Image Sharing Platform</h1>
-            <button id="upload-btn" class="btn">Upload Image</button>
+            <h1>Image Collection</h1>
         </header>
         
-        <div id="gallery" class="gallery">
+        <div id="gallery" class="random-gallery">
             <!-- Images will be loaded here -->
             <div class="loading"></div>
         </div>
+        
+        <button id="add-button" class="add-button">+</button>
     </div>
     
     <!-- Upload Modal -->
     <div id="upload-modal" class="modal-overlay">
         <div class="modal">
-            <h2>Upload New Image</h2>
             <form id="upload-form">
                 <div class="form-group">
-                    <label for="image-title">Title</label>
-                    <input type="text" id="image-title" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="image-description">Description</label>
+                    <label for="image-description">Text</label>
                     <textarea id="image-description" required></textarea>
                 </div>
                 
@@ -282,33 +262,27 @@
         </div>
     </div>
     
-    <!-- Image Viewer Modal -->
-    <div id="image-viewer-overlay" class="modal-overlay">
-        <div id="image-viewer" class="image-viewer">
-            <button class="close-btn">&times;</button>
-            <img id="viewer-image" src="" alt="">
-            <h3 id="viewer-title"></h3>
-            <p id="viewer-description"></p>
-        </div>
+    <!-- Text Popup -->
+    <div id="text-popup" class="popup">
+        <button class="close-btn">&times;</button>
+        <p id="popup-text" class="popup-text"></p>
     </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // DOM Elements
-            const uploadBtn = document.getElementById('upload-btn');
+            const addButton = document.getElementById('add-button');
             const uploadModal = document.getElementById('upload-modal');
             const uploadForm = document.getElementById('upload-form');
             const closeModalBtns = document.querySelectorAll('.close-modal');
             const galleryContainer = document.getElementById('gallery');
-            const imageViewerOverlay = document.getElementById('image-viewer-overlay');
-            const imageViewer = document.getElementById('image-viewer');
-            const viewerImage = document.getElementById('viewer-image');
-            const viewerTitle = document.getElementById('viewer-title');
-            const viewerDescription = document.getElementById('viewer-description');
-            const closeViewerBtn = document.querySelector('#image-viewer .close-btn');
+            const textPopup = document.getElementById('text-popup');
+            const popupText = document.getElementById('popup-text');
+            const closePopupBtn = document.querySelector('#text-popup .close-btn');
             
-            // API URL - Replace with your actual backend URL
-            const API_URL = 'https://emptypedestal.onrender.com/api';            
+            // API URL - Update with your Render URL
+            const API_URL = 'https://emptypedestal.onrender.com/api';
+            
             // Load images from API
             async function loadImages() {
                 try {
@@ -325,7 +299,7 @@
                 }
             }
             
-            // Display images in the gallery
+            // Display images in random positions
             function displayImages(images) {
                 if (images.length === 0) {
                     galleryContainer.innerHTML = `<p>No images uploaded yet. Be the first to upload!</p>`;
@@ -334,39 +308,133 @@
                 
                 galleryContainer.innerHTML = '';
                 
+                // Get container dimensions for random positioning
+                const containerWidth = galleryContainer.clientWidth;
+                const containerHeight = galleryContainer.clientHeight || window.innerHeight - 120;
+                
+                // Create and position each image randomly
                 images.forEach(image => {
                     const imageElement = document.createElement('div');
                     imageElement.className = 'gallery-item';
+                    
+                    // Random size (vary the size for more interest)
+                    const size = Math.floor(Math.random() * 100) + 150; // 150-250px width
+                    
+                    // Random position (avoiding edges)
+                    const maxLeft = containerWidth - size - 20;
+                    const maxTop = containerHeight - size - 20;
+                    const left = Math.floor(Math.random() * maxLeft) + 10;
+                    const top = Math.floor(Math.random() * maxTop) + 10;
+                    
+                    // Random rotation for more visual interest
+                    const rotation = Math.floor(Math.random() * 20) - 10; // -10 to +10 degrees
+                    
+                    // Apply styles
+                    imageElement.style.width = `${size}px`;
+                    imageElement.style.left = `${left}px`;
+                    imageElement.style.top = `${top}px`;
+                    imageElement.style.transform = `rotate(${rotation}deg)`;
+                    
                     imageElement.innerHTML = `
-                        <img src="${image.imageUrl}" alt="${image.title}" class="gallery-image">
-                        <div class="gallery-info">
-                            <h3 class="gallery-title">${image.title}</h3>
-                        </div>
+                        <img src="${image.imageUrl}" alt="" class="gallery-image">
                     `;
                     
-                    imageElement.addEventListener('click', () => {
-                        openImageViewer(image);
+                    // Add click event for showing text popup
+                    imageElement.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        showTextPopup(image.description, e);
                     });
                     
                     galleryContainer.appendChild(imageElement);
+                    
+                    // Attempt to prevent excessive overlapping
+                    checkAndRepositionIfOverlapping(imageElement, galleryContainer.querySelectorAll('.gallery-item'));
                 });
             }
             
-            // Open image viewer
-            function openImageViewer(image) {
-                viewerImage.src = image.imageUrl;
-                viewerTitle.textContent = image.title;
-                viewerDescription.textContent = image.description;
-                imageViewerOverlay.classList.add('active');
+            // Helper function to check and reposition overlapping elements
+            function checkAndRepositionIfOverlapping(element, allElements) {
+                const elementRect = element.getBoundingClientRect();
+                const containerWidth = galleryContainer.clientWidth;
+                const containerHeight = galleryContainer.clientHeight || window.innerHeight - 120;
+                
+                // Adjust position if too close to another element
+                Array.from(allElements).forEach(otherElement => {
+                    if (otherElement !== element) {
+                        const otherRect = otherElement.getBoundingClientRect();
+                        
+                        // Check if there's significant overlap
+                        const overlap = !(
+                            elementRect.right < otherRect.left + 30 || 
+                            elementRect.left > otherRect.right - 30 || 
+                            elementRect.bottom < otherRect.top + 30 || 
+                            elementRect.top > otherRect.bottom - 30
+                        );
+                        
+                        if (overlap) {
+                            // Reposition this element
+                            const newLeft = Math.floor(Math.random() * (containerWidth - 200));
+                            const newTop = Math.floor(Math.random() * (containerHeight - 200));
+                            element.style.left = `${newLeft}px`;
+                            element.style.top = `${newTop}px`;
+                        }
+                    }
+                });
             }
             
-            // Close image viewer
-            function closeImageViewer() {
-                imageViewerOverlay.classList.remove('active');
+            // Show text popup
+            function showTextPopup(text, event) {
+                popupText.textContent = text;
+                
+                // Position the popup near the click, but ensure it stays in viewport
+                const x = event.clientX;
+                const y = event.clientY;
+                
+                // Reset any previous positioning
+                textPopup.style.left = '';
+                textPopup.style.right = '';
+                textPopup.style.top = '';
+                textPopup.style.bottom = '';
+                
+                // Get viewport and popup dimensions
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                textPopup.style.display = 'block';
+                const popupWidth = textPopup.offsetWidth;
+                const popupHeight = textPopup.offsetHeight;
+                
+                // Determine position based on click location
+                if (x + popupWidth + 20 > viewportWidth) {
+                    // Not enough space to the right, position to the left
+                    textPopup.style.right = (viewportWidth - x + 10) + 'px';
+                } else {
+                    // Position to the right
+                    textPopup.style.left = (x + 10) + 'px';
+                }
+                
+                if (y + popupHeight + 20 > viewportHeight) {
+                    // Not enough space below, position above
+                    textPopup.style.bottom = (viewportHeight - y + 10) + 'px';
+                } else {
+                    // Position below
+                    textPopup.style.top = (y + 10) + 'px';
+                }
             }
+            
+            // Close text popup
+            closePopupBtn.addEventListener('click', () => {
+                textPopup.style.display = 'none';
+            });
+            
+            // Close popup when clicking outside
+            document.addEventListener('click', (e) => {
+                if (textPopup.style.display === 'block' && !textPopup.contains(e.target)) {
+                    textPopup.style.display = 'none';
+                }
+            });
             
             // Open upload modal
-            uploadBtn.addEventListener('click', () => {
+            addButton.addEventListener('click', () => {
                 uploadModal.classList.add('active');
             });
             
@@ -377,15 +445,10 @@
                 });
             });
             
-            closeViewerBtn.addEventListener('click', closeImageViewer);
-            
             // Close modals when clicking outside
             window.addEventListener('click', (e) => {
                 if (e.target === uploadModal) {
                     uploadModal.classList.remove('active');
-                }
-                if (e.target === imageViewerOverlay) {
-                    closeImageViewer();
                 }
             });
             
@@ -393,21 +456,19 @@
             uploadForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
-                const titleInput = document.getElementById('image-title');
                 const descriptionInput = document.getElementById('image-description');
                 const fileInput = document.getElementById('image-file');
                 
-                const title = titleInput.value;
                 const description = descriptionInput.value;
                 const file = fileInput.files[0];
                 
-                if (!title || !description || !file) {
+                if (!description || !file) {
                     alert('Please fill in all fields');
                     return;
                 }
                 
                 const formData = new FormData();
-                formData.append('title', title);
+                formData.append('title', 'Image'); // Using a default title
                 formData.append('description', description);
                 formData.append('image', file);
                 
@@ -428,6 +489,12 @@
                     console.error('Error uploading image:', error);
                     alert('Failed to upload image. Please try again.');
                 }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                // Reload images to reposition them
+                loadImages();
             });
             
             // Initial load

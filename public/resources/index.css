@@ -15,7 +15,6 @@ a {
 
 .buttons {
     display: flex;
-    position: fixed;
 }
 
 .buttons button {
@@ -26,7 +25,6 @@ a {
     border: 1px white solid;
     border-radius: 30px;
     font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
-    align-items: center;
 }
 
 .buttons button:hover {
@@ -80,7 +78,7 @@ a {
         font-size: 2rem;
         text-align: center;
         position: fixed;
-        bottom: 1rem;
+        bottom: 1.2rem;
         font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
     }
 
@@ -125,31 +123,31 @@ a {
     }
 
     #two {
-        animation: text 3s ease-in-out;
+        animation: text 2.2s ease-in-out;
     }
 
     #three {
-        animation: text 4s ease-in-out;
+        animation: text 2.4s ease-in-out;
     }
 
     #four {
-        animation: text 5s ease-in-out;
+        animation: text 2.6s ease-in-out;
     }
 
     #five {
-        animation: text 6s ease-in-out;
+        animation: text 2.8s ease-in-out;
     }
 
     #six {
-        animation: text 7s ease-in-out;
+        animation: text 3s ease-in-out;
     }
 
     #seven {
-        animation: text 8s ease-in-out;
+        animation: text 3.2s ease-in-out;
     }
 
     #eight {
-        animation: text 9s ease-in-out;
+        animation: text 3.4s ease-in-out;
     }
     
 
@@ -178,5 +176,10 @@ a {
     #text-appear {
         font-size: 1rem;
         bottom: 45vh;
+    }
+
+    .buttons {
+        align-items: center;
+        justify-content: space-between;
     }
   }

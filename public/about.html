@@ -43,7 +43,7 @@
         font-size: 3rem;
         position: absolute;
         width: 100%;
-        top: 2rem;
+        top: 5rem;
         font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
         text-align: center;
 
@@ -112,11 +112,16 @@
 
     #black-top {
         position: fixed;
-        height: 4.5rem;
+        height: 8rem;
         background-color: black;
-        top: 0;
+        top: -1rem;
         left: 0;
         width: 100vw;
+        -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
         }
 
     @media only screen and (max-width: 750px), (orientation: portrait) {
@@ -150,8 +155,8 @@
     }
 
     #title-about {
-        font-size: 1rem;
-        line-height: 1rem;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
     }
 
     #to-archive button {

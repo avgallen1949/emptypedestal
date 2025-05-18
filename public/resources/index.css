@@ -11,6 +11,11 @@ a {
     color: white;
 }
 
+@font-face {
+    font-family: 'Palatino-Roman Th';
+    src: url(./resources/palatino.ttf);
+}
+
 /*landing*/
 
 .buttons {

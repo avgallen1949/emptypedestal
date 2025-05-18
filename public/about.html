@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABOUT | An Empty Pedestal is an Invitation</title>
-    <link rel="stylesheet" href="./resources/index.css">
+    <!-- <link rel="stylesheet" href="./resources/index.css"> -->
 
     <link rel="icon" type="image/x-icon" href="./resources/favicon.png">
 </head>
@@ -24,6 +24,11 @@
     #title-about:hover{
             color: gray;
             transition: .4s ease-in-out;
+        }
+
+        @font-face {
+            font-family: 'Palatino-Roman Th';
+            src: url(./resources/palatino.ttf);
         }
 
     #pedestal, #xtopher {
@@ -112,16 +117,10 @@
 
     #black-top {
         position: fixed;
-        height: 8rem;
+        height: 7rem;
         background-color: black;
-        top: -1rem;
         left: 0;
         width: 100vw;
-        -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
         }
 
     @media only screen and (max-width: 750px), (orientation: portrait) {
@@ -215,7 +214,6 @@ At the event, Johnston’s mayor declares that “there are always going to be p
             <br><br><br><br><br>
             <a href="./archive.html" id="to-archive"><button>to build something else instead →</button></a>
     </div>
-
 
     
 </body>

@@ -22,6 +22,11 @@
             font-size: 12px;
         }
 
+        @font-face {
+            font-family: 'Palatino-Roman Th';
+            src: url(./resources/palatino.ttf);
+        }
+
                 /* Language selector styling */
         .language-selector {
             position: fixed;
@@ -341,7 +346,7 @@
             display: none;
         }
 
-        .about {
+        #about {
             position: fixed;
         	bottom: 20px;
             left: 20px;
@@ -361,17 +366,17 @@
 
 }
 
-        .about:hover, .about:active {
+        #about:hover {
             background-color: #ffffff;
 	        color:#000;
 }
 
         a h2 {
-            opacity: 0;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            color: black;
   
             background-color: #fff;
             border: 1px dashed rgb(47, 128, 0);
@@ -389,14 +394,6 @@
             font-size: 1.5rem;
             text-align: left;
 }
-
-        a:last-child:after {
-            content:'';
-        }
-
-        a:hover h2 {
-            opacity: 1;
-        }
         
         .popup-text {
             margin-bottom: 10px;
@@ -446,7 +443,7 @@
                 width: 80%;
             }
 
-            .add-button, .about {
+            .add-button, #about {
             width: 40px;
             height: 40px;
             z-index: 5;
@@ -474,9 +471,9 @@
 </div>
 
 <!--About popup-->
-<a class="about">
+<a id="about">
     ?
-    <h2>
+    <h2 id="aboutpopup">
     In the absense of the Columbus statue in Elmwood, what do we want to honor instead? <br><br>
     <p>
         <p>What do you want to remember, to reflect on, to create with others, to imagine for the future, to teach other histories about, to ask questions about, or to acknowledge? <br> <br>Contribute to this archive with the + button below.
@@ -520,6 +517,13 @@
 </div>
 
 <script>
+
+$('#aboutpopup').hide();
+    $('#about').on('click', function(){
+        $('#aboutpopup').toggle();
+    });
+
+
     document.addEventListener('DOMContentLoaded', function() {
         // DOM Elements
         const addButton = document.getElementById('add-button');

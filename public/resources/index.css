@@ -1,62 +1,182 @@
 html {
-    height: 100vh;
-    width: 100vw;
-    font-size: 12px;
     background-color: black;
+    color: white;
+    font-size: 12px;
+    font-family: 'Palatino-Roman Th', 'Times New Roman', Times, serif;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
     color: white;
 }
 
-.italics {
-    font-style: italic;
-}
+/*landing*/
 
-#pedestal-div {
-    margin: auto;
+.buttons {
     display: flex;
-    justify-content: center;
-}
-
-#index-pedestal {
-    height: 35rem;
-    width: auto;
     position: fixed;
-    bottom: -2rem;
-    z-index: 2;
-    margin: auto;
 }
 
-#pedestal-content {
-    width: 40rem;
-    margin: auto;
-    top: 2rem;
-    display: block;
-    padding-bottom: 30rem;
-}
-
-#cc {
-    width: 40rem;
-    top: 4rem;
-    display: block;
-    position: relative;
-    z-index: 2;
-    right: 2rem;
-}
-
-#pedestal-text {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 3rem;
-    margin-top: 30rem;
-    font-size: 2rem;
-    line-height: 2.5rem;
-}
-
-#white-block {
-    width: 100%;
-    height: 20vh;
-    bottom: 0;
-    display: block;
-    position: fixed;
-    z-index: 1;
+.buttons button {
     background-color: black;
+    padding: .5rem 1rem;
+    color: white;
+    margin: .5rem;
+    border: 1px white solid;
+    border-radius: 30px;
+    font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+    align-items: center;
 }
-  
+
+.buttons button:hover {
+    cursor: pointer;
+    background-color: gray;
+    transition: .4s ease-in-out;
+}
+
+        /* Language selector styling */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .language-selector button {
+            background-color: black;
+            border: 0;
+        }
+        
+        .language-btn {
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .language-btn:hover {
+            text-decoration: underline;
+            color: gray;
+            transition: .4s ease-in-out;
+        }
+        
+        .language-btn.active {
+            text-decoration: underline;
+        }
+
+    #pedestal {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        height: auto;
+    }
+
+    #pedestal #subtitle {
+        font-size: 2rem;
+        text-align: center;
+        position: fixed;
+        bottom: 1rem;
+        font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+    }
+
+    #pedestal #title {
+        font-size: 7rem;
+        line-height: 6rem;
+        text-align: center;
+        position: fixed;
+        bottom: 0rem;
+    }
+
+    #pedestal img {
+        height: auto;
+        width: 30rem;
+        position: fixed;
+        display: block;
+        bottom: 23.5rem;
+        z-index: 1;
+    }
+
+    #text-appear {
+        font-family: "Akkurat-Fett", Arial, Helvetica, sans-serif;
+        font-size: 1.5rem;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        bottom: 50vh;
+        z-index: -1;
+    }
+
+    @keyframes text {
+        0%   {color: rgba(255, 255, 255, 0);}
+        25%  {color: rgba(255, 255, 255, 0.252);}
+        50%  {color: rgba(255, 255, 255, 0.496);}
+        100% {color: rgb(255, 255, 255);}
+      }
+
+    #one {
+        animation: text 2s ease-in-out;
+    }
+
+    #two {
+        animation: text 3s ease-in-out;
+    }
+
+    #three {
+        animation: text 4s ease-in-out;
+    }
+
+    #four {
+        animation: text 5s ease-in-out;
+    }
+
+    #five {
+        animation: text 6s ease-in-out;
+    }
+
+    #six {
+        animation: text 7s ease-in-out;
+    }
+
+    #seven {
+        animation: text 8s ease-in-out;
+    }
+
+    #eight {
+        animation: text 9s ease-in-out;
+    }
+    
+
+      /* smartphone */
+  @media only screen and (max-width: 750px), (orientation: portrait) {
+    #pedestal img {
+        height: auto;
+        width: 15rem;
+        display: block;
+        bottom: 11rem;
+        z-index: 1;
+    }
+
+    #pedestal #title {
+        font-size: 3rem;
+        line-height: 2.8rem;
+        text-align: center;
+        bottom: 0rem;
+    }
+    
+    #pedestal #subtitle {
+        font-size: 1.3rem;
+        bottom: 0;
+    }
+
+    #text-appear {
+        font-size: 1rem;
+        bottom: 45vh;
+    }
+  }

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHIVE | An Empty Pedestal is an Invitation</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./resources/favicon.png">
+
+    <style>
+        html {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Palatino-Roman Th', 'Times New Roman', Times, serif;
+            font-size: 12px;
+        }
+
+                /* Language selector styling */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .language-selector button {
+            background-color: white;
+            border: 0;
+            font-family: 'Akkurat', Arial, Helvetica, sans-serif;
+
+        }
+        
+        .language-btn {
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            color: black;
+        }
+        
+        .language-btn:hover {
+            text-decoration: underline;
+            color: gray;
+            transition: .4s ease-in-out;
+        }
+        
+        .language-btn.active {
+            text-decoration: underline;
+        }
+
+        #title-about {
+        font-size: 2rem;
+        line-height: 1.8rem;
+        position: relative;
+        display: block;
+        z-index: 1;
+        left: 1rem;
+        top: 1rem;
+        color: black;
+        text-align: center;
+        }
+
+        #title-about:hover{
+            color: gray;
+            transition: .4s ease-in-out;
+        }
+
+        #pedestal {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        height: auto;
+    }
+
+        #pedestal img {
+        height: auto;
+        width: 30rem;
+        position: absolute;
+        display: block;
+        bottom: 0;
+        z-index: 0;
+    }
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        
+        body {
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            font-size: 16px;
+        }
+        
+        .random-gallery {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 120px);
+        }
+        
+        .gallery-item {
+            position: absolute;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+            /* width: 200px; */
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .image-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s;
+        }
+        
+        .image-popup-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .image-popup {
+            background-color: white;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .popup-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+
+        }
+        
+        .popup-image {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+        }
+        
+        .popup-text-container {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .popup-text {
+            color: #333;
+            font-size: 2rem;
+            font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+            font-style: bold;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: black;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+        }
+        
+        .popup-close:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .add-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgb(47, 128, 0);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            border: none;
+            font-family: "Akkurat-Normal", Arial, Helvetica, sans-serif;
+        }
+        
+        .add-button:hover {
+            background-color: #606060;
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s;
+
+        }
+        
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .modal {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+        }
+        
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: rgb(47, 128, 0);
+        }
+        
+        .btn-cancel {
+            background-color: #95a5a6;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .popup {
+            position: absolute;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            z-index: 200;
+            display: none;
+        }
+
+        .about {
+            position: fixed;
+        	bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgb(47, 128, 0);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            border: none;
+            font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+
+}
+
+        .about:hover, .about:active {
+            background-color: #ffffff;
+	        color:#000;
+}
+
+        a h2 {
+            opacity: 0;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+  
+            background-color: #fff;
+            border: 1px dashed rgb(47, 128, 0);
+            height: auto;
+            width: 40vw;
+            padding: 25px;
+  
+            font-family: 'Palatino-Roman Th', 'Times New Roman', Times, serif;
+            font-size: 2rem;
+            pointer-events: none;
+}
+
+        a h2 p {
+            font-family: 'Akkurat-Normal', Arial, Helvetica, sans-serif;
+            font-size: 1.5rem;
+            text-align: left;
+}
+
+        a:last-child:after {
+            content:'';
+        }
+
+        a:hover h2 {
+            opacity: 1;
+        }
+        
+        .popup-text {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.5rem;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #95a5a6;
+        }
+        
+        .close-btn:hover {
+            color: #7f8c8d;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+        }
+        
+        .loading::after {
+            content: "Loading...";
+            font-size: 20px;
+            color: #95a5a6;
+        }
+
+        @media only screen and (max-width: 750px), (orientation: portrait) {
+            .gallery-item img{
+                width: 80px;
+                height: 80px;
+            }
+
+            #pedestal img {
+                width: 20rem;
+            }
+
+            a h2 {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="language-selector">
+        <button id="en-btn" class="language-btn active" onclick="changeLanguage('en')">EN</button>
+        <button id="es-btn" class="language-btn" onclick="changeLanguage('es')">ES</button>
+    </div> -->
+    <a href="./index.html"><p id="title-about">AN EMPTY<br>PEDESTAL<br>IS AN INVITATION</p></a>
+    <div id="pedestal">
+    <img src="./resources/pedestal.png">
+    </div>
+
+    <div id="gallery" class="random-gallery">
+        <!-- Images-->
+        <div class="loading"></div>
+    </div>
+    
+    <button id="add-button" class="add-button">+</button>
+</div>
+
+<!--About popup-->
+<a class="about">
+    ?
+    <h2>
+    In the absense of the Columbus statue in Elmwood, what do we want to honor instead? <br><br>
+    <p>
+        <p>What do you want to remember, to reflect on, to create with others, to imagine for the future, to teach other histories about, to ask questions about, or to acknowledge? <br> <br>Contribute to this archive with the + button below.
+    </p>
+    </h2>
+    </a>
+
+<!-- Upload Modal -->
+<div id="upload-modal" class="modal-overlay">
+    <div class="modal">
+        <form id="upload-form">
+            <div class="form-group">
+                <label for="image-description">Text</label>
+                <textarea id="image-description" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="image-file">Image</label>
+                <input type="file" id="image-file" accept="image/*" required>
+            </div>
+            
+            <div class="modal-buttons">
+                <button type="button" class="btn btn-cancel close-modal">Cancel</button>
+                <button type="submit" class="btn">Upload</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Image Popup -->
+<div id="image-popup-overlay" class="image-popup-overlay">
+    <div class="image-popup">
+        <button class="popup-close">X</button>
+        <div class="popup-image-container">
+            <img id="popup-image" src="" alt="" class="popup-image">
+        </div>
+        <div class="popup-text-container">
+            <p id="popup-text" class="popup-text"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // DOM Elements
+        const addButton = document.getElementById('add-button');
+        const uploadModal = document.getElementById('upload-modal');
+        const uploadForm = document.getElementById('upload-form');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const galleryContainer = document.getElementById('gallery');
+        const imagePopupOverlay = document.getElementById('image-popup-overlay');
+        const popupImage = document.getElementById('popup-image');
+        const popupText = document.getElementById('popup-text');
+        const popupClose = document.querySelector('.popup-close');
+        
+        // API URL - Update with your Render URL
+        const API_URL = 'https://emptypedestal.onrender.com/api';
+        
+        // Load images from API
+        async function loadImages() {
+            try {
+                const response = await fetch(`${API_URL}/images`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch images');
+                }
+                
+                const data = await response.json();
+                displayImages(data);
+            } catch (error) {
+                console.error('Error loading images:', error);
+                galleryContainer.innerHTML = `<p>Failed to load images. Please try again later.</p>`;
+            }
+        }
+        
+        // Function to determine if an image is horizontal
+        function determineImageOrientation(img) {
+            return new Promise((resolve) => {
+                if (img.complete) {
+                    resolve(img.naturalWidth > img.naturalHeight);
+                } else {
+                    img.onload = function() {
+                        resolve(img.naturalWidth > img.naturalHeight);
+                    };
+                }
+            });
+        }
+        
+        // Set appropriate size based on orientation and device
+        function setImageSize(imgElement, isHorizontal) {
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isHorizontal) {
+                imgElement.parentElement.style.width = isMobile ? '100px' : '100px';
+                imgElement.parentElement.classList.add('horizontal');
+            } else {
+                imgElement.parentElement.style.width = isMobile ? '100px' : '100px';
+                imgElement.parentElement.classList.add('vertical');
+            }
+        }
+        
+        // Display images in random positions with consistent sizes
+        async function displayImages(images) {
+            if (images.length === 0) {
+                galleryContainer.innerHTML = `<p>No images uploaded yet. Be the first to upload!</p>`;
+                return;
+            }
+            
+            galleryContainer.innerHTML = '';
+            
+            // Get container dimensions for random positioning
+            const containerWidth = galleryContainer.clientWidth;
+            const containerHeight = galleryContainer.clientHeight || window.innerHeight - 120;
+            
+            // Create and position each image with loading promises
+            const imagePromises = images.map(async (image, index) => {
+                const imageElement = document.createElement('div');
+                imageElement.className = 'gallery-item';
+                
+                // Create image element
+                const imgElement = document.createElement('img');
+                imgElement.src = image.imageUrl;
+                imgElement.alt = "";
+                imgElement.className = "gallery-image";
+                
+                // Store image data for popup
+                imageElement.dataset.imageUrl = image.imageUrl;
+                imageElement.dataset.description = image.description;
+                
+                // Add to DOM early for width/height detection
+                imageElement.appendChild(imgElement);
+                galleryContainer.appendChild(imageElement);
+                
+                // Determine orientation and set size
+                const isHorizontal = await determineImageOrientation(imgElement);
+                setImageSize(imgElement, isHorizontal);
+                
+                // Now calculate position based on actual size
+                const width = parseInt(imageElement.style.width);
+                const height = width; // Approximate height
+                
+                // Random position (avoiding edges)
+                const maxLeft = containerWidth - width - 20;
+                const maxTop = containerHeight - height - 100;
+                const left = Math.floor(Math.random() * maxLeft) + 10;
+                const top = Math.floor(Math.random() * maxTop) + 10;
+                
+                // Random rotation (-10 to +10 degrees)
+                const rotation = Math.floor(Math.random() * 20) - 10;
+                
+                // Apply position and rotation
+                imageElement.style.left = `${left}px`;
+                imageElement.style.top = `${top}px`;
+                imageElement.style.transform = `rotate(${rotation}deg)`;
+                
+                // Add click event for showing image popup
+                imageElement.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showImagePopup(image.imageUrl, image.description);
+                });
+                
+                return { element: imageElement, width, height, left, top };
+            });
+            
+            // Wait for all images to load and adjust positions if needed
+            const loadedImages = await Promise.all(imagePromises);
+            
+            // Optional: Adjust positions to minimize overlapping
+            adjustPositions(loadedImages, containerWidth, containerHeight);
+        }
+        
+        // Simple algorithm to reduce excessive overlapping
+        function adjustPositions(images, containerWidth, containerHeight) {
+            for (let i = 0; i < images.length; i++) {
+                const img1 = images[i];
+                for (let j = 0; j < i; j++) {
+                    const img2 = images[j];
+                    
+                    // Check if they overlap too much
+                    const overlap = isOverlapping(img1, img2);
+                    if (overlap) {
+                        // Find a new position for img1
+                        const newPos = findNewPosition(img1, images, containerWidth, containerHeight);
+                        img1.element.style.left = `${newPos.left}px`;
+                        img1.element.style.top = `${newPos.top}px`;
+                        img1.left = newPos.left;
+                        img1.top = newPos.top;
+                    }
+                }
+            }
+        }
+        
+        // Check if two images overlap significantly
+        function isOverlapping(img1, img2) {
+            const rect1 = {
+                left: img1.left,
+                right: img1.left + img1.width,
+                top: img1.top,
+                bottom: img1.top + img1.height
+            };
+            
+            const rect2 = {
+                left: img2.left,
+                right: img2.left + img2.width,
+                top: img2.top,
+                bottom: img2.top + img2.height
+            };
+            
+            // Calculate overlap percentage
+            const overlapX = Math.max(0, Math.min(rect1.right, rect2.right) - Math.max(rect1.left, rect2.left));
+            const overlapY = Math.max(0, Math.min(rect1.bottom, rect2.bottom) - Math.max(rect1.top, rect2.top));
+            
+            const overlapArea = overlapX * overlapY;
+            const img1Area = img1.width * img1.height;
+            
+            // If overlap is more than 30% of img1's area
+            return overlapArea > (img1Area * 0.3);
+        }
+        
+        // Find a new position with less overlap
+        function findNewPosition(img, allImages, containerWidth, containerHeight) {
+            const width = img.width;
+            const height = img.height;
+            
+            // Try several random positions and pick the best one
+            let bestPosition = { left: img.left, top: img.top };
+            let lowestOverlap = Number.MAX_VALUE;
+            
+            for (let i = 0; i < 10; i++) {
+                const newLeft = Math.floor(Math.random() * (containerWidth - width - 20)) + 10;
+                const newTop = Math.floor(Math.random() * (containerHeight - height - 20)) + 10;
+                
+                // Calculate total overlap with all other images
+                let totalOverlap = 0;
+                for (const otherImg of allImages) {
+                    if (otherImg === img) continue;
+                    
+                    const tempImg = {...img, left: newLeft, top: newTop};
+                    if (isOverlapping(tempImg, otherImg)) {
+                        totalOverlap++;
+                    }
+                }
+                
+                // If this position has less overlap, use it
+                if (totalOverlap < lowestOverlap) {
+                    lowestOverlap = totalOverlap;
+                    bestPosition = { left: newLeft, top: newTop };
+                    
+                    // If we found a position with no overlap, use it immediately
+                    if (totalOverlap === 0) break;
+                }
+            }
+            
+            return bestPosition;
+        }
+        
+        // Update image sizes on window resize
+        function updateImageSizes() {
+            const isMobile = window.innerWidth <= 768;
+            const horizontalItems = document.querySelectorAll('.gallery-item.horizontal');
+            const verticalItems = document.querySelectorAll('.gallery-item.vertical');
+            
+            horizontalItems.forEach(item => {
+                item.style.width = isMobile ? '100px' : '100px';
+            });
+            
+            verticalItems.forEach(item => {
+                item.style.width = isMobile ? '100px' : '100px';
+            });
+        }
+        
+        // Show image popup with text
+        function showImagePopup(imageUrl, text) {
+            popupImage.src = imageUrl;
+            popupText.textContent = text;
+            imagePopupOverlay.classList.add('active');
+            
+            // Add event listener to close when clicking outside
+            imagePopupOverlay.addEventListener('click', closeImagePopupOnOutsideClick);
+            
+            // Prevent scrolling on body
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close image popup
+        function closeImagePopup() {
+            imagePopupOverlay.classList.remove('active');
+            
+            // Remove event listener
+            imagePopupOverlay.removeEventListener('click', closeImagePopupOnOutsideClick);
+            
+            // Allow scrolling again
+            document.body.style.overflow = '';
+            
+            // Clear image source for better memory management
+            setTimeout(() => {
+                popupImage.src = '';
+            }, 300);
+        }
+        
+        // Function to close popup when clicking outside
+        function closeImagePopupOnOutsideClick(e) {
+            // If the click is on the overlay but not on the popup content
+            if (e.target === imagePopupOverlay) {
+                closeImagePopup();
+            }
+        }
+        
+        // Close button event
+        popupClose.addEventListener('click', closeImagePopup);
+        
+        // Open upload modal
+        addButton.addEventListener('click', () => {
+            uploadModal.classList.add('active');
+        });
+        
+        // Close modals
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                uploadModal.classList.remove('active');
+            });
+        });
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === uploadModal) {
+                uploadModal.classList.remove('active');
+            }
+        });
+        
+        // Handle form submission
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const descriptionInput = document.getElementById('image-description');
+            const fileInput = document.getElementById('image-file');
+            
+            const description = descriptionInput.value;
+            const file = fileInput.files[0];
+            
+            if (!description || !file) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('title', 'Image'); // Using a default title
+            formData.append('description', description);
+            formData.append('image', file);
+            
+            try {
+                const response = await fetch(`${API_URL}/images`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to upload image');
+                }
+                
+                uploadModal.classList.remove('active');
+                uploadForm.reset();
+                loadImages();
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                alert('Failed to upload image. Please try again.');
+            }
+        });
+        
+        // Handle keyboard events (ESC to close popups)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (imagePopupOverlay.classList.contains('active')) {
+                    closeImagePopup();
+                }
+                if (uploadModal.classList.contains('active')) {
+                    uploadModal.classList.remove('active');
+                }
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            updateImageSizes();
+        });
+        
+        // Initial load
+        loadImages();
+    });
+</script>
+</body>
+</html>

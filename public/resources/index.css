@@ -105,7 +105,7 @@ a {
     }
 
     #pedestal #title {
-        font-size: 5.8vw;
+        font-size: 5.9vw;
         line-height: 6rem;
         text-align: center;
         display: block;
@@ -172,6 +172,10 @@ a {
     #eight {
         animation: text 5.5s ease-in-out;
     }
+
+        #mobile {
+        display: none;
+    }
     
 
       /* smartphone */
@@ -180,20 +184,24 @@ a {
         height: auto;
         width: 15rem;
         display: block;
-        bottom: 11rem;
+        bottom: 8rem;
         z-index: 1;
     }
 
     #pedestal #title {
-        font-size: 3.3rem;
+        font-size: 3.2rem;
         line-height: 3rem;
         text-align: center;
         bottom: 0rem;
     }
+
+    #mobile {
+        display: contents;
+    }
     
     #subtitle {
         font-size: 1rem;
-        width: 20vw;
+        width: 23vw;
     }
 
     #text-appear {
@@ -203,8 +211,9 @@ a {
 
     .buttons {
         align-items: start;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        flex-direction: column;
+        /* justify-content: space-between; */
+        width: 60vw;
+        /* flex-wrap: wrap;
+        flex-direction: column; */
     }
   }

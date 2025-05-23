@@ -79,13 +79,16 @@
         margin-bottom: 40vh;
     }
 
+    .paragraph-text {
+        width: 30%;
+        margin: auto;
+    }
+
     .paragraph-text p {
         font-size: 1.8rem;
         line-height: 2.5rem;
         margin: auto;
-        width: 30%;
         font-family: 'Akkurat-Normal', Arial, Helvetica, sans-serif;
-
     }
 
     #larger-text {
@@ -97,9 +100,9 @@
     .paragraph-text h3 {
         font-size: 4rem;
         margin: auto;
-        width: 30%;
         text-transform: uppercase;
     }
+
 
     #to-archive button {
         font-size: 2rem;
@@ -125,6 +128,14 @@
 
     }
 
+    .image-about {
+        display: flex;
+        width: 30%;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    }
+
     #black-top {
         position: fixed;
         height: 8rem;
@@ -140,6 +151,22 @@
         filter: blur(3px);
         }
 
+        #text-appear {
+        font-family: "Akkurat-Fett", Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        z-index: -1;
+    }
+
+       @keyframes text {
+        0%   {color: rgba(255, 255, 255, 0);}
+        25%  {color: rgba(255, 255, 255, 0.252);}
+        50%  {color: rgba(255, 255, 255, 0.496);}
+        100% {color: rgb(255, 255, 255);}
+      }
+
     @media only screen and (max-width: 750px), (orientation: portrait) {
        #xtopher img {
         width: 24rem;
@@ -152,17 +179,20 @@
         width: 18rem;
     }
 
+    .paragraph-text, .image-about {
+        width: 87%;
+        margin: auto;
+    }
+
+
        .paragraph-text p {
         font-size: 1.3rem;
         line-height: 1.9rem;
-        margin: auto;
-        width: 95%;
     }
 
     .paragraph-text h3 {
         font-size: 3rem;
-        margin: auto;
-        width: 90%;
+        line-height: 2.8rem;
     }
 
     #larger-text {
@@ -183,11 +213,6 @@
 <body>
     <div id="black-top"></div>
     <a href="./index.html"><p id="title-about">AN EMPTY<br>PEDESTAL<br>IS AN INVITATION</p></a>
-    
-    <!-- <div class="language-selector">
-        <button id="en-btn" class="language-btn active" onclick="changeLanguage('en')">EN</button>
-        <button id="es-btn" class="language-btn" onclick="changeLanguage('es')">ES</button>
-    </div> -->
 
     <div id="pedestal">
         <img src="./resources/pedestal.png">
@@ -208,24 +233,35 @@
             Providence kept the Columbus statue in storage for 3 years before it was donated to the city of Johnston, Rhode Island and unveiled on Columbus Day in 2023.</p>
 
     </div>
-    <br><br><br><br><br><br>
+    <br><br><br>
+        <img class="image-about" src="./resources/camera.png">
+<br><br><br>
     <div class="paragraph-text">
         <h3>Who gets to politicize Columbus?</h3><br>
         <p>
             After being removed from its location in Reservoir Square, formerly Columbus Square, the Columbus statue now sits within Johnston’s Memorial Park. The park honors veterans, displays large U.S. military weapons, and promotes narratives of American exceptionalism. The statue has an iron fence around its perimeter, and is under constant surveillance via a security camera several meters away. The community is on defense.<br><br>
             On Columbus Day 2023, the morning of Johnston’s unveiling of the statue and Columbus Day celebration, residents wake up to find white nationalist propaganda in their driveways. A New England organization places flyers inside of ziplock bags with rocks to keep them from flying away. The flyers read “New Englanders you are being replaced. Organize and resist” and feature an illustration of a man with a rifle.<br><br>
-            At the event, Johnston’s mayor declares that “there are always going to be people who want to take our history away from us… we’re not going to let them do that.” Columbus’s violent acts are excused away through claims that they were just the norms of the time. News coverage of the morning reports altercations between residents and two Italian-American protesters. The residents call the protesters communists, and reference woke ideology, Donald Trump, and supporting Israel. The Johnston residents in attendance position themselves in relation to these current events, within an ongoing culture war, and treat the statue of something to be safeguarded, as a symbolic stand-in for culture that needs to be protected.
+            At the event, Johnston’s mayor declares that “there are always going to be people who want to take our history away from us… we’re not going to let them do that.” Columbus’s violent acts are excused away through claims that they were just the norms of the time. News coverage of the morning reports altercations between residents and two Italian-American protesters. The attendees call the protesters communists, and reference woke ideology, Donald Trump, and supporting Israel. The Johnston residents in attendance position themselves in relation to these current events, within an ongoing culture war, and treat the statue of something to be safeguarded, as a symbolic stand-in for culture that needs to be protected.
         </p>
     </div>
-    <br><br><br><br><br><br>
+    <br><br><br>
+    <img class="image-about" src="./resources/camera.png"><br>
+    <img class="image-about" src="./resources/Screenshot 2025-05-23 at 7.13.24 AM.png"><br>
+    <img class="image-about" src="./resources/a7bc1776-8802-4439-a5bb-90cc8c0d2c81-530PPJOHNSTONROCKSPKG_frame_670.png">
+    <br><br><br>
     <div class="paragraph-text" id="bottom">
-        <h3>What happens when the symbol is gone but the structure remains? 
+        <h3>What happens when Columbus is gone but the structure remains? 
         </h3><br>
         <p>
-            While Johnston is empowered around the myth of Columbus as a heroic explorer, Elmwood is disempowered to protest Columbus’s genocidal and colonial legacy. By removing the statue and renaming the square in Elmwood, the city has neutralized an ongoing protest; one that extends beyond Columbus, condemning the persistence of colonialism and racism in one of Providence’s most diverse neighborhoods. The absence of genocidal figures in public space is the bare minimum, but the removal in this instance is more complex. This is depoliticization in one context – where protest is neutralized by bureaucratic gestures – and right-wing politicization in another. In Johnston, the statue has become a rallying call, not only for Italian-American remembrance, but, as exemplified with the white nationalist flyers, within a cultural narrative of a broader defense of whiteness, nationalism, and reactionary politics. These two sites raise questions: whose narratives are protected? Who is disempowered? Who can politicize Columbus? To what ends?<br><br><br><br><br>
+            While Johnston is empowered around the myth of Columbus as a heroic explorer, Elmwood is disempowered to protest Columbus’s genocidal and colonial legacy. By removing the statue and renaming the square in Elmwood, the city has neutralized an ongoing protest; one that extends beyond Columbus, condemning the persistence of colonialism and racism in one of Providence’s most diverse neighborhoods. The absence of genocidal figures in public space is the bare minimum, but the removal in this instance is more complex. This is depoliticization in one context – where protest is neutralized by bureaucratic gestures – and right-wing politicization in another. In Johnston, the statue has become a rallying call, not only for Italian-American remembrance, but, as exemplified with the white nationalist flyers, within a cultural narrative of a broader defense of whiteness, nationalism, and reactionary politics. These two sites raise questions: 
+            <em>whose narratives are protected? Who is disempowered? Who can politicize Columbus? To what ends?</em><br><br></p>
+<br><br><br>
+            <p>
             <span id="larger-text">The reality behind Columbus isn’t over. Remnants of red paint and chipped stone in Elmwood remember. The evidence of the empty pedestal remains. This website is an attempt to re-politicize these events where they have been neutralized, and reframe the empty pedestal as an invitation…</span> </p>
-            <br><br><br><br><br><br><br>
-            <a href="./archive.html" id="to-archive"><button>to Build Something Else Instead →</button></a>
+            <br><br><br>
+            <br><br><br><br>
+
+            <a href="./archive.html" id="to-archive"><button>to Imagine Otherwise →</button></a>
     </div>
 
     

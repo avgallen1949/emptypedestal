@@ -1,0 +1,210 @@
+html {
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    font-family: 'Palatino-Roman Th', 'Times New Roman', Times, serif;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+@font-face {
+    font-family: 'Palatino-Roman Th';
+    src: url(./resources/palatino.ttf);
+}
+
+@font-face {
+    font-family: 'Akkurat-Fett';
+    src: url(./resources/Akkurat-Fett);
+}
+
+@font-face {
+    font-family: 'Akkurat-Normal';
+    src: url(./resources/Akkurat-Normal);
+}
+
+/*landing*/
+
+.buttons {
+    display: flex;
+    align-items: start;
+    /* flex-wrap: wrap;
+    flex-direction: column; */
+}
+
+.buttons button {
+    background-color: rgba(0, 0, 0, 0);
+    padding: .5rem 1rem;
+    color: white;
+    margin: .3rem;
+    border: 1px white solid;
+    border-radius: 30px;
+    font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+}
+
+.buttons button:hover {
+    cursor: pointer;
+    background-color: gray;
+    transition: .4s ease-in-out;
+}
+
+        /* Language selector styling */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .language-selector button {
+            background-color: black;
+            border: 0;
+        }
+        
+        .language-btn {
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .language-btn:hover {
+            text-decoration: underline;
+            color: gray;
+            transition: .4s ease-in-out;
+        }
+        
+        .language-btn.active {
+            text-decoration: underline;
+        }
+
+    #pedestal {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        height: auto;
+    }
+
+    #subtitle {
+        font-size: 1.7rem;
+        text-align: right;
+        width: 20rem;
+        position: fixed;
+        display: block;
+        top: 1rem;
+        right: 1rem;
+        margin: 0;
+        font-family: 'Palatino-Roman Th', 'Times New Roman', Times, serif;
+    }
+
+    #pedestal #title {
+        font-size: 5.8vw;
+        line-height: 6rem;
+        text-align: center;
+        display: block;
+        position: fixed;
+        bottom: .5rem;
+        margin: 0;
+    }
+
+    #pedestal img {
+        height: auto;
+        width: 30rem;
+        position: fixed;
+        bottom: 5rem;
+        z-index: 1;
+    }
+
+    #text-appear {
+        font-family: "Akkurat-Fett", Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+
+@keyframes text {
+    0%   {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+    #one {
+        animation: text 2s ease-in-out;
+    }
+
+    #two {
+        animation: text 2.5s ease-in-out;
+    }
+
+    #three {
+        animation: text 3s ease-in-out;
+    }
+
+    #four {
+        animation: text 3.5s ease-in-out;
+    }
+
+    #five {
+        animation: text 4s ease-in-out;
+    }
+
+    #six {
+        animation: text 4.5s ease-in-out;
+    }
+
+    #seven {
+        animation: text 5s ease-in-out;
+    }
+
+    #eight {
+        animation: text 5.5s ease-in-out;
+    }
+    
+
+      /* smartphone */
+  @media only screen and (max-width: 750px), (orientation: portrait) {
+    #pedestal img {
+        height: auto;
+        width: 15rem;
+        display: block;
+        bottom: 8rem;
+        z-index: 1;
+    }
+
+    #pedestal #title {
+        font-size: 3.2rem;
+        line-height: 3rem;
+        text-align: center;
+        bottom: 0rem;
+    }
+    
+    #subtitle {
+        font-size: 1rem;
+        width: 20vw;
+    }
+
+    #text-appear {
+        font-size: 1rem;
+        top: 40%;
+    }
+
+    .buttons {
+        align-items: start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+  }

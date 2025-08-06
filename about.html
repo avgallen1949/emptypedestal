@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT | An Empty Pedestal is an Invitation</title>
+    <link rel="stylesheet" href="./resources/index.css">
+
+    <link rel="icon" type="image/x-icon" href="./resources/favicon.png">
+</head>
+<style>
+
+        /*about*/
+        #title-about {
+        font-size: 2rem;
+        line-height: 1.9rem;
+        position: fixed;
+        z-index: 1;
+        left: 1rem;
+        top: 1rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    #title-about:hover{
+            color: gray;
+            transition: .4s ease-in-out;
+        }
+
+        @font-face {
+            font-family: 'Palatino-Roman Th';
+            src: url(./resources/palatino.ttf);
+        }
+
+        @font-face {
+    font-family: 'Akkurat-Fett';
+    src: url(./resources/Akkurat-Fett);
+}
+
+@font-face {
+    font-family: 'Akkurat-Normal';
+    src: url(./resources/Akkurat-Normal);
+}
+
+    #pedestal, #xtopher {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #pedestal img {
+        position: fixed;
+        bottom: 0;
+        width: 30rem;
+    }
+
+    #scroll-up {
+        color: white;
+        font-size: 3rem;
+        position: absolute;
+        width: 100%;
+        top: 5rem;
+        font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+        text-align: center;
+
+    }
+
+    #xtopher img {
+        position: absolute;
+        bottom: 20rem;
+        width: 35rem;
+        z-index: 1;
+    }
+
+    #top {
+        margin-top: 100vh;
+    }
+
+    #bottom {
+        margin-bottom: 40vh;
+    }
+
+    .paragraph-text {
+        width: 30%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .paragraph-text p {
+        font-size: 1.8rem;
+        line-height: 2.5rem;
+        margin: auto;
+        font-family: 'Akkurat-Normal', Arial, Helvetica, sans-serif;
+    }
+
+    #larger-text {
+        font-size: 4rem;
+        line-height: 4.5rem;
+        font-family: 'Palatino';
+    }
+
+    .paragraph-text h3 {
+        font-size: 4rem;
+        margin: auto;
+        text-transform: uppercase;
+    }
+
+
+    #to-archive button {
+        font-size: 2rem;
+        font-family: 'Akkurat-Normal', Arial, Helvetica, sans-serif;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        padding: 1.5rem;
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 15px;
+        color: white;
+    }
+
+    #to-archive button:hover {
+        cursor: pointer;
+        background-color: rgb(47, 128, 0);
+        border: 0;
+        transition: .4s ease-in-out;
+
+    }
+
+    .image-about {
+        display: flex;
+        width: 30%;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    iframe {
+        aspect-ratio: 16 / 9;
+    }
+
+    #black-top {
+        position: fixed;
+        height: 8rem;
+        background-color: black;
+        left: 0;
+        width: 100vw;
+        margin: 0;
+        top: -1rem;
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -o-filter: blur(3px);
+        -ms-filter: blur(3px);
+        filter: blur(3px);
+        }
+
+    @media only screen and (max-width: 750px), (orientation: portrait) {
+       #xtopher img {
+        width: 24rem;
+        bottom: 11.5rem;
+       } 
+
+       #pedestal img {
+        position: fixed;
+        bottom: 0;
+        width: 18rem;
+    }
+
+    .paragraph-text, .image-about {
+        width: 87%;
+        margin: auto;
+    }
+
+
+       .paragraph-text p {
+        font-size: 1.3rem;
+        line-height: 1.9rem;
+    }
+
+    .paragraph-text h3 {
+        font-size: 3rem;
+        line-height: 2.8rem;
+    }
+
+    #larger-text {
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+
+    #title-about {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+
+    #to-archive button {
+        font-size: 1.5rem;
+    }
+    }
+</style>
+<body>
+    <div id="black-top"></div>
+    <a href="./index.html"><p id="title-about">AN EMPTY<br>PEDESTAL<br>IS AN INVITATION</p></a>
+
+    <div id="pedestal">
+        <img src="./resources/pedestal.png">
+    </div>
+
+    <div id="scroll-up">
+        ↑
+    </div>
+
+    <div id="xtopher">
+        <img src="./resources/xtopher.png">
+    </div>
+
+    <div class="paragraph-text" id="top">
+        <h3>Columbus in Elmwood</h3><br>
+        <p>During the summer of 2020, the city of Providence removed a statue of Christopher Columbus from the Elmwood neighborhood. The statue, located in Providence since 1893, has been vandalized for over a decade – people condemn the statue’s presence for celebrating and honoring genocide. After flyers circulated within the neighborhood calling for its removal in the wake of George Floyd protests, the city deployed 100 police officers to ensure the statue was preserved. Days later the city removes the statue, and people within the neighborhood gather to cheer. The removal of a colonial figure, like Columbus, is cause to celebrate, right?
+            <br><br>
+            Providence kept the Columbus statue in storage for 3 years before it was donated to the city of Johnston, Rhode Island and unveiled on Columbus Day in 2023.</p>
+
+    </div>
+    <br><br><br>
+        <img class="image-about" src="./resources/johnston.png">
+<br><br><br>
+    <div class="paragraph-text">
+        <h3>Who gets to politicize Columbus?</h3><br>
+        <p>
+            After being removed from its location in Reservoir Square, formerly Columbus Square, the Columbus statue now sits within Johnston’s Memorial Park. The park honors veterans, displays large U.S. military weapons, and promotes narratives of American exceptionalism. The statue has an iron fence around its perimeter, and is under constant surveillance via a security camera several meters away. The community is on defense.<br><br>
+            On Columbus Day 2023, the morning of Johnston’s unveiling of the statue and Columbus Day celebration, residents wake up to find white nationalist propaganda in their driveways. A New England organization places flyers inside of ziplock bags with rocks to keep them from flying away. The flyers read “New Englanders you are being replaced. Organize and resist” and feature an illustration of a man with a rifle.<br><br>
+            At the event, Johnston’s mayor declares that “there are always going to be people who want to take our history away from us… we’re not going to let them do that.” Columbus’s violent acts are excused away through claims that they were just the norms of the time. News coverage of the morning reports altercations between residents and two Italian-American protesters. The attendees call the protesters communists, and reference woke ideology, Donald Trump, and supporting Israel. The Johnston residents in attendance position themselves in relation to these current events, within an ongoing culture war, and treat the statue of something to be safeguarded, as a symbolic stand-in for culture that needs to be protected.
+        </p>
+    </div>
+    <br><br><br>
+    <iframe class="image-about" id="nxs-video-iframe" data-frame-src="9066862" width="100%" height="100%" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" layout="responsive" src="https://redir1.wpri.com/nxs-video-player/eyJ2aWRlb19pZCI6IjkwNjY4NjIiLCJwb3N0X2lkIjoxODM4MzIyLCJhZHRhZ191cmwiOiJhdHVfcDE/c3o9MXgxMDAwJml1PVwvNTY3OFwvbGluLndwcmlcL25ld3NcL2xvY2FsX25ld3NcL25vcnRod2VzdCZpbXBsPXMmZ2RmcF9yZXE9MSZlbnY9dnAmb3V0cHV0PXZtYXAmdW52aWV3ZWRfcG9zaXRpb25fc3RhcnQ9MSZ2aWQ9c2hvcnRfb25lY3VlJmNtc2lkPTEyMzQmdXJsPWF0dV9wMiZjaXVfc3pzPTcyOHg5MCwzMDB4MjUwJmFkX3J1bGU9MSZkZXNjcmlwdGlvbl91cmw9YXR1X3AyJmN1c3RfcGFyYW1zPXZpZD05MDY2ODYyJnN0YXRpb249V1BSSSZjbXNpZD0xODM4MzIyJnBpZD0xODM4MzIyJnBlcnNfY2lkPW54cy0yMy1hcnRpY2xlLTE4MzgzMjImdmlkY2F0PVwvbmV3c1wvbG9jYWxfbmV3c1wvbm9ydGh3ZXN0JmJvYl9jaz1bYm9iX2NrX3ZhbF0mZF9jb2RlPTEmcGFnZXR5cGU9c3RvcnkmaGxtZXRhPWNvbnRyb3ZlcnNpYWwgY29sdW1idXMgc3RhdHVlIHVudmVpbGVkIGluIGpvaG5zdG9uJmFhPWYiLCJwb3N0X3R5cGUiOiJwb3N0IiwiaW5qZWN0ZWRfdmlhIjoiYW1wIiwiYWRfcHJvdmlkZXIiOiJnYW0iLCJpbl93cF9lZGl0b3IiOmZhbHNlLCJhbGxvd19hdXRvcGxheSI6dHJ1ZSwiaXNfbGl2ZWJsb2ciOmZhbHNlfQ==" scrolling="no" frameborder="0" allowfullscreen></iframe>
+    <br>
+    <img class="image-about" src="./resources/camera.png"><br>
+    <img class="image-about" src="./resources/a7bc1776-8802-4439-a5bb-90cc8c0d2c81-530PPJOHNSTONROCKSPKG_frame_670.png">
+    <br><br><br>
+    <div class="paragraph-text" id="bottom">
+        <h3>What happens when Columbus is gone but the structure remains? 
+        </h3><br>
+        <p>
+            While Johnston is empowered around the myth of Columbus as a heroic explorer, Elmwood is disempowered to protest Columbus’s genocidal and colonial legacy. By removing the statue and renaming the square in Elmwood, the city has neutralized an ongoing protest; one that extends beyond Columbus, condemning the persistence of colonialism and racism in one of Providence’s most diverse neighborhoods. The absence of genocidal figures in public space is the bare minimum, but the removal in this instance is more complex. This is depoliticization in one context – where protest is neutralized by bureaucratic gestures – and right-wing politicization in another. In Johnston, the statue has become a rallying call, not only for Italian-American remembrance, but, as exemplified with the white nationalist flyers, within a cultural narrative of a broader defense of whiteness, nationalism, and reactionary politics. These two sites raise questions: 
+            <em>whose narratives are protected? Who is disempowered? Who can politicize Columbus? To what ends?</em><br><br></p>
+<br><br><br>
+            <p>
+            <span id="larger-text">The reality behind Columbus isn’t over. Remnants of red paint and chipped stone in Elmwood remember. The evidence of the empty pedestal remains. This website is an attempt to re-politicize these events where they have been neutralized, and reframe the empty pedestal as an invitation…</span> </p>
+            <br><br><br>
+            <br><br><br><br>
+
+            <a href="./archive.html" id="to-archive"><button>to Imagine Otherwise →</button></a>
+    </div>
+
+    
+</body>
+</html>

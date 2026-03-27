@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARCHIVE | An Empty Pedestal is an Invitation</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./resources/favicon.png">
 
     <style>
@@ -18,61 +21,56 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Palatino-Roman Th', 'Times New Roman', Times, serif;
+            font-family: "Martel Sans", Arial, Helvetica, sans-serif;
             font-size: 12px;
         }
 
-        @font-face {
-            font-family: 'Palatino-Roman Th';
-            src: url(./resources/palatino.ttf);
-        }
-
-        @font-face {
-    font-family: 'Akkurat-Fett';
-    src: url(./resources/Akkurat-Fett);
+.martel-sans-extralight {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 200;
+  font-style: normal;
 }
 
-@font-face {
-    font-family: 'Akkurat-Normal';
-    src: url(./resources/Akkurat-Normal);
+.martel-sans-light {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
-                /* Language selector styling */
-        .language-selector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 5px;
-        }
+.martel-sans-regular {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
-        .language-selector button {
-            background-color: white;
-            border: 0;
-            font-family: 'Akkurat', Arial, Helvetica, sans-serif;
+.martel-sans-semibold {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
 
-        }
-        
-        .language-btn {
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            color: black;
-        }
-        
-        .language-btn:hover {
-            text-decoration: underline;
-            color: gray;
-            transition: .4s ease-in-out;
-        }
-        
-        .language-btn.active {
-            text-decoration: underline;
-        }
+.martel-sans-bold {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.martel-sans-extrabold {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.martel-sans-black {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
 
         #title-about {
         font-size: 2rem;
+        width: auto;
         line-height: 1.8rem;
         position: relative;
         display: block;
@@ -81,6 +79,7 @@
         top: 1rem;
         color: black;
         text-align: left;
+        font-family: "Palatino-Roman Th", 'Times New Roman', Times, serif;
         }
 
         #title-about:hover{
@@ -201,7 +200,7 @@
         .popup-text {
             color: #333;
             font-size: 2rem;
-            font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+            font-family: "Martel Sans", Arial, Helvetica, sans-serif;
             font-style: bold;
         }
         
@@ -221,35 +220,34 @@
             align-items: center;
             cursor: pointer;
             transition: background-color 0.3s;
-            font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+            font-family: "Martel Sans", Arial, Helvetica, sans-serif;
         }
         
         .popup-close:hover {
             background-color: #f1f1f1;
         }
         
-        .add-button {
+        #add-button {
             position: fixed;
-            bottom: 20px;
+            display: block;
+            color: gray;
+            font-size: 3rem;
+            font-family: 'Martel Sans', Arial, Helvetica, sans-serif;
+            font-weight: 900;
+            position: fixed;
+            top: 10px;
             right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: rgb(47, 128, 0);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
             z-index: 1000;
+            height: auto;
+            width: auto;
+            background: none;
             border: none;
-            font-family: "Akkurat-Normal", Arial, Helvetica, sans-serif;
         }
-        
-        .add-button:hover {
-            background-color: #606060;
+
+        #add-button:hover {
+            color: black;
+            cursor: pointer;
+            transition: 1s ease-in-out;
         }
         
         .modal-overlay {
@@ -305,7 +303,7 @@
             font-size: 16px;
             resize: vertical;
             min-height: 100px;
-            font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+            font-family: "Martel Sans", Arial, Helvetica, sans-serif;
         }
         
         .form-group input[type="file"] {
@@ -356,29 +354,34 @@
             display: none;
         }
 
+        #aboutpopup {
+            text-align: center;
+        }
+
+        #about p {
+            text-align: center;
+        }
+
         #about {
             position: fixed;
-        	bottom: 20px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: rgb(47, 128, 0);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
+        	top: 70px;
+            right: 20px;
+            width: auto;
+            height: auto;
+            border: none;
+            background: none;
+            color: gray;
+            font-size: 2.8rem;
+            line-height: 3rem;
             cursor: pointer;
             z-index: 1000;
-            border: none;
-            font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
-
+            font-family: "Martel Sans", Arial, Helvetica, sans-serif;
+            font-weight: 900;
 }
 
         #about:hover {
-            background-color: #ffffff;
 	        color:#000;
+            transition: 1s ease-in-out;
 }
 
 #about:active {
@@ -399,13 +402,14 @@
             width: 40vw;
             padding: 25px;
   
-            font-family: 'Palatino-Roman Th', 'Times New Roman', Times, serif;
+            font-family: "Martel Sans", Arial, Helvetica, sans-serif;
             font-size: 2rem;
+            line-height: 2.3rem;
             pointer-events: none;
 }
 
         a h2 p {
-            font-family: 'Akkurat-Normal', Arial, Helvetica, sans-serif;
+            font-family: "Martel Sans", Arial, Helvetica, sans-serif;
             font-size: 1.5rem;
             text-align: left;
 }
@@ -458,12 +462,6 @@
                 width: 80%;
             }
 
-            .add-button, #about {
-            width: 40px;
-            height: 40px;
-            z-index: 5;
-            }
-
             #title-about {
                 font-size: 1.5rem;
         line-height: 1.5rem;
@@ -496,8 +494,7 @@
     <h2 id="aboutpopup">
     In the absence of the Columbus statue in Elmwood, what do we want to honor instead? <br><br>
     <p>
-        <p>What do you want to remember, to reflect on, to create with others, to imagine for the future, to teach other histories about, to ask questions about, or to acknowledge? <br> <br>Contribute to this archive with the + button below.
-    </p>
+        <p>What do you want to remember, to reflect on, to create with others, to imagine for the future, to teach other histories about, to ask questions about, or to acknowledge? <br> <br>Contribute to this archive with the + button.<br><br><span id="smaller">Click ? to exit.</span>    </p>
     </h2>
     </a>
 

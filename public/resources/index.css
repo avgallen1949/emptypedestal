@@ -16,7 +16,7 @@ a {
     src: url(./resources/palatino.ttf);
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Akkurat-Fett';
     src: url(./resources/Akkurat-Fett);
 }
@@ -24,64 +24,81 @@ a {
 @font-face {
     font-family: 'Akkurat-Normal';
     src: url(./resources/Akkurat-Normal);
+} */
+
+
+.martel-sans-extralight {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 200;
+  font-style: normal;
 }
+
+.martel-sans-light {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.martel-sans-regular {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.martel-sans-semibold {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.martel-sans-bold {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.martel-sans-extrabold {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.martel-sans-black {
+  font-family: "Martel Sans", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
 
 /*landing*/
 
 .buttons {
     display: flex;
-    align-items: start;
-    /* flex-wrap: wrap;
-    flex-direction: column; */
+    align-items: end;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: fixed;
+    top: 20px;
+    right: 20px;
 }
 
 .buttons button {
     background-color: rgba(0, 0, 0, 0);
     padding: .5rem 1rem;
-    color: white;
+    color: gray;
     margin: .3rem;
-    border: 1px white solid;
-    border-radius: 30px;
-    font-family: 'Akkurat-Fett', Arial, Helvetica, sans-serif;
+    font-family: 'Martel Sans', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    background: none;
+    border: none;
 }
 
 .buttons button:hover {
     cursor: pointer;
-    background-color: gray;
+    color: white;
     transition: .4s ease-in-out;
 }
 
-        /* Language selector styling */
-        .language-selector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 5px;
-        }
-
-        .language-selector button {
-            background-color: black;
-            border: 0;
-        }
-        
-        .language-btn {
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            color: white;
-        }
-        
-        .language-btn:hover {
-            text-decoration: underline;
-            color: gray;
-            transition: .4s ease-in-out;
-        }
-        
-        .language-btn.active {
-            text-decoration: underline;
-        }
 
     #pedestal {
         margin: auto;
@@ -92,20 +109,8 @@ a {
         height: auto;
     }
 
-    #subtitle {
-        font-size: 1.7rem;
-        text-align: right;
-        width: 20rem;
-        position: fixed;
-        display: block;
-        top: 1rem;
-        right: 1rem;
-        margin: 0;
-        font-family: 'Palatino-Roman Th', 'Times New Roman', Times, serif;
-    }
-
     #pedestal #title {
-        font-size: 5.9vw;
+        font-size: 5.8vw;
         line-height: 6rem;
         text-align: center;
         display: block;
@@ -123,8 +128,10 @@ a {
     }
 
     #text-appear {
-        font-family: "Akkurat-Fett", Arial, Helvetica, sans-serif;
-        font-size: 1.2rem;
+    font-family: 'Martel Sans', Arial, Helvetica, sans-serif;
+    font-weight: 400;        
+    font-size: 1.2rem;
+    line-height: 1.6rem;
         color: white;
         text-transform: uppercase;
         text-align: center;
@@ -173,6 +180,14 @@ a {
         animation: text 5.5s ease-in-out;
     }
 
+        #nine {
+        animation: text 6s ease-in-out;
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 1.9rem;
+        color: gray;
+    }
+
         #mobile {
         display: none;
     }
@@ -199,9 +214,11 @@ a {
         display: contents;
     }
     
-    #subtitle {
+    #nine {
         font-size: 1rem;
-        width: 23vw;
+        line-height: 1.4rem;
+        margin-top: -1.3rem;
+        
     }
 
     #text-appear {
@@ -210,10 +227,17 @@ a {
     }
 
     .buttons {
-        align-items: start;
-        /* justify-content: space-between; */
-        width: 60vw;
-        /* flex-wrap: wrap;
-        flex-direction: column; */
-    }
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    width: 95%;
+    margin: auto;
+    transform: translate(-50%, 0%);
+    text-align: center;
+}
+
   }
